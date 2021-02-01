@@ -1,0 +1,31 @@
+<table class="table table-bordered">
+  <thead>
+      <tr>
+          <th id="phone-id">Id</th>
+          <th id="phone-name">Name</th>
+          <th id="phones">Phones</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr *ngFor="let phone of phones">
+          <td>{{phone.businessEntityID}}</td>
+          <td>{{phone.name}}</td>
+          <td> <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th id="phone-id">Number</th>
+                    <th id="phone-name">Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let number of phone.phones">
+                    <td>{{number.phoneNumber}}</td>
+                    <td>{{number.type}}</td>
+                    <td>    </td>
+                </tr>
+            </tbody>
+          </table>
+             </td>
+      </tr>
+  </tbody>
+</table>
