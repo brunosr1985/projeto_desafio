@@ -17,5 +17,12 @@ namespace Examples.Charge.Infra.Data.Repositories
         }
 
         public async Task<IEnumerable<Person>> FindAllAsync() => await Task.Run(() => _context.Person);
+
+        public async Task<Person> InsertAsync(Person newPerson) 
+        {
+            await _context.Person.AddAsync(newPerson);
+
+            return newPerson;
+        }
     }
 }

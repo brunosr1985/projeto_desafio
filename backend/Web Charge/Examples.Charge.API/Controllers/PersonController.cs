@@ -31,6 +31,7 @@ namespace Persons.Charge.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] PersonRequest request)
         {
+            
             return Response(0, null);
         }
     }

@@ -26,6 +26,15 @@ namespace Examples.Charge.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
             services.AddDbContext<ExampleContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -72,7 +81,7 @@ namespace Examples.Charge.API
             }
 
             app.UseSwagger();
-
+            app.UseCors();
             app.UseSwaggerUI(options =>
             {
                 options.SwaggerEndpoint("../swagger/v1/swagger.json", "Example Api");

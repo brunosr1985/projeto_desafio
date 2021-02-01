@@ -2,6 +2,7 @@
 using Examples.Charge.Application.Dtos;
 using Examples.Charge.Application.Interfaces;
 using Examples.Charge.Application.Messages.Response;
+using Examples.Charge.Domain.Aggregates.PersonAggregate;
 using Examples.Charge.Domain.Aggregates.PersonAggregate.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,5 +29,16 @@ namespace Examples.Charge.Application.Facade
             response.PersonObjects.AddRange(result.Select(x => _mapper.Map<PersonDto>(x)));
             return response;
         }
+
+        public async Task<PersonResponse> CreateAsync(Person newPerson)
+        {
+            var personAdded = await _personService.CreateAsync(newPerson);
+            var response = new PersonResponse();
+            response.PersonObjects = new List<PersonDto>();
+            response.PersonObjects.Add(personAdded);
+
+            return response;
+        }
+
     }
 }
